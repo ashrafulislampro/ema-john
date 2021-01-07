@@ -10,12 +10,13 @@
     
 }
 .btn{
-    width: 150px;
-    height: 27px;
+    width: 160px;
+    height: 36px;
     background-color: goldenrod;
     border-radius: 5px;
     cursor: pointer;
-   
+    font-size: 15px;
+    font-weight: 600;
    
 }
 .product-text{
