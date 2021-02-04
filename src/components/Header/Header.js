@@ -15,7 +15,7 @@ const Header = () => {
                 <Link to="/shop">Shop</Link>
                 <Link to="/review">Order Review</Link>
                 <Link to="/inventory">Manage Inventory</Link>
-                <button onClick={() => setLoggedInUser({})}>Sign out</button>
+                <button style={{backgroundColor : 'black', color : 'white'}} onClick={() => setLoggedInUser({})}>Sign Out</button>
               
             </nav>
         </div>

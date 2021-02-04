@@ -14,7 +14,7 @@ import firebaseConfig from "./firebase.config";
           .then(res => {
             // console.log(res);
             const {email,photoURL,displayName} = res.user;
-
+            
             const isSignedIn = {
               isSignedIn : true,
               displayName : displayName,
@@ -36,7 +36,7 @@ import firebaseConfig from "./firebase.config";
               isSignedIn : '',
               email : '',
               photoURL: '',
-              displayName: '',
+              displayName : '',
               error : '',
               success : false
             }
@@ -51,38 +51,31 @@ import firebaseConfig from "./firebase.config";
           return firebase
           .auth()
           .signInWithPopup(fbProvider)
-          .then((result) => {
-            /** @type {firebase.auth.OAuthCredential} */
-            var credential = result.credential;
-      
-            // The signed-in user info.
-            var user = result.user;
-            user.success = true;
-            return user;
-            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-            var accessToken = credential.accessToken;
+          .then(res => {
+            const {email,photoURL,displayName} = res.user;
             
-            // ...
+            const isSignedIn = {
+              isSignedIn : true,
+              displayName : displayName,
+              photoURL : photoURL,
+              email : email,
+              success : true
+            }
+            return isSignedIn;
+        
           })
-          .catch((error) => {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-      
-            // ...
+          .catch( error => {
+           
+           
           });
         }
-        export const createUserWithEmailAndPassword = (name, email, password) => {
+        export const createUserWithEmailAndPassword = (displayName, email, password) => {
            return firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(res => {
              const newUserInfo = res.user;
              newUserInfo.error = '';
              newUserInfo.success = true;
-             updateUserName(name);
+             updateUserName(displayName);
              return newUserInfo;
           })
           .catch((error) => {
@@ -110,11 +103,11 @@ import firebaseConfig from "./firebase.config";
           });
         
         }
-        const updateUserName = name => {
+        const updateUserName = displayName => {
           const user = firebase.auth().currentUser;
       
           user.updateProfile({
-            displayName: name
+            displayName: displayName
           }).then(function() {
            console.log("user name updated successfully")
           }).catch(function(error) {

@@ -9,21 +9,31 @@ const Shipment = () => {
           const onSubmit = data => {
             console.log(data)
           };
-          console.log(loggedInUser.email); 
+          
+
           console.log(watch("example")); // watch input value by passing the name of it
         
           return (
            
             <form className="ship-form" onSubmit={handleSubmit(onSubmit)}>
             
-              <input name="name" defaultValue={loggedInUser.name} ref={register({ required: true })} placeholder="Your Name"/>
+              <input name="name" defaultValue={loggedInUser.displayName} ref={register({ required: true })} placeholder="Your Name"/>
               {errors.name && <span className="error">Name is required</span>}
 
               <input name="email" defaultValue={loggedInUser.email} ref={register({ required: true })} placeholder="Your Email" />
               {errors.email && <span className="error">Email is required</span>}
 
-              <input name="address" ref={register({ required: true })} placeholder="Your Address"/>
-              {errors.address && <span className="error">Address is required</span>}
+              <input name="nickName" ref={register({ required: true })} placeholder="Your Nick Name"/>
+              {errors.nickName && <span className="error">NickName is required</span>} 
+
+              <input name="city" ref={register({ required: true })} placeholder="Your City"/>
+              {errors.city && <span className="error">City is required</span>}
+
+              <input name="region" ref={register({ required: true })} placeholder="State/Region"/>
+              {errors.region && <span className="error">State/Region is required</span>}
+
+              <input name="zipCode" ref={register({ required: true })} placeholder="Zip Code"/>
+              {errors.zipCode && <span className="error">Zip Code is required</span>}
 
               <input name="phoneNumber" ref={register({ required: true })} placeholder="Your Phone Number"/>
               {errors.phoneNumber && <span className="error">Phone Number is required</span>}

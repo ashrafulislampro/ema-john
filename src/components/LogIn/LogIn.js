@@ -8,7 +8,7 @@ function LogIn() {
   const [newUser, setNewUser] = useState(false);
   const [user, setUser] = useState({
     isSignedIn: false,
-    displayName :'',
+    displayName:'',
     photoURL: '',
     email: '',
     password: ''
@@ -70,7 +70,7 @@ function LogIn() {
   const handleSubmit = (e) => {
      
       if(newUser && user.email && user.password){
-         createUserWithEmailAndPassword(user.name, user.email, user.password)
+         createUserWithEmailAndPassword(user.displayName, user.email, user.password)
          .then((res) => {
           handleResponse(res, true);
          })
@@ -96,7 +96,7 @@ function LogIn() {
         <button onClick={googleSignIn}>Sign in</button>
       }
       <br/>
-      <button onClick={fbSignIn}>Sign in using Facebook</button>
+      {/* <button onClick={fbSignIn}>Sign in using Facebook</button> */}
       {
         user.isSignedIn && 
         <div>
@@ -109,7 +109,7 @@ function LogIn() {
       <input type="checkbox" onChange={ () => setNewUser(!newUser)} name="newUser" id=""/>
       <label htmlFor="newUser">New User Sign Up</label>
       <form onSubmit={handleSubmit}>
-      {newUser && <input type="text" name="name" onBlur={handleBlur} placeholder="Your name"  required/>}
+      {newUser && <input type="text" name="displayName" onBlur={handleBlur} placeholder="Your name"  required/>}
         <br/>
         <input type="text" name="email" onBlur={handleBlur} placeholder="Enter Your Email" required/>
         <br/>
